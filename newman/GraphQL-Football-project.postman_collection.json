@@ -1,0 +1,961 @@
+{
+  "info": {
+    "_postman_id": "d813dae4-47eb-42c7-92c2-396229af0eeb",
+    "name": "GraphQL-Football-project",
+    "description": "A couple of requests to test the project features",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Leagues - import 'PL'",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(5*60*1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(10*60*1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('importLeague');",
+              "    pm.expect(jsonData.data.importLeague).to.be.an('array');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation ImportCompetition($leagueCode: String){\n  importLeague(leagueCode:$leagueCode){\n    name,\n    code,\n    areaName\n  }\n}",
+            "variables": "{\n    \"leagueCode\": \"PL\"\n}"
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'importLeague' mutation: takes {leagueCode} as a parameter and gets data using the given {leagueCode}, by making requests to the http://www.football-data.org/ API, and import the data into a DB"
+      },
+      "response": []
+    },
+    {
+      "name": "Leagues - import 'BSA'",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(5*60*1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(10*60*1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('importLeague');",
+              "    pm.expect(jsonData.data.importLeague).to.be.an('array');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation ImportCompetition($leagueCode: String){\n  importLeague(leagueCode:$leagueCode){\n    name,\n    code,\n    areaName\n  }\n}",
+            "variables": "{\n    \"leagueCode\": \"BSA\"\n}"
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'importLeague' mutation: takes {leagueCode} as a parameter and gets data using the given {leagueCode}, by making requests to the http://www.football-data.org/ API, and import the data into a DB"
+      },
+      "response": []
+    },
+    {
+      "name": "Leagues - import 'CL'",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(5*60*1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(10*60*1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('importLeague');",
+              "    pm.expect(jsonData.data.importLeague).to.be.an('array');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation ImportCompetition($leagueCode: String){\n  importLeague(leagueCode:$leagueCode){\n    name,\n    code,\n    areaName\n  }\n}",
+            "variables": "{\n    \"leagueCode\": \"CL\"\n}"
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'importLeague' mutation: takes {leagueCode} as a parameter and gets data using the given {leagueCode}, by making requests to the http://www.football-data.org/ API, and import the data into a DB"
+      },
+      "response": []
+    },
+    {
+      "name": "Competitions - Get all competitions",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(800);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('competitions');",
+              "    pm.expect(jsonData.data.competitions).to.be.an('array');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query SeeCompetitions {\n  competitions {\n    name,\n    code,\n    areaName,\n    teams {\n        name,\n        tla,\n        shortName,\n        areaName,\n        email\n    }\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'competitions' query: returns a list of competitions"
+      },
+      "response": []
+    },
+    {
+      "name": "Competition - Correct params",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(800);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('competition');",
+              "    pm.expect(jsonData.data.competition).to.be.an(\"object\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query SeeCompetitions {\n  competition(name: \"Premier League\"){\n    name,\n    code,\n    areaName,\n    teams {\n        name,\n        tla,\n        shortName,\n        areaName,\n        email\n    }\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'competition' query: that takes a name and returns the corresponding competition"
+      },
+      "response": []
+    },
+    {
+      "name": "Competition - Non-existent competition",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(800);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('competition');",
+              "    pm.expect(jsonData.data.competition).to.be.null;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query SeeCompetitions {\n  competition(name: \"Non-existent competition\"){\n    name,\n    code,\n    areaName,\n    teams {\n        name,\n        tla,\n        shortName,\n        areaName,\n        email\n    }\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'competition' query: that takes a name and returns the corresponding competition"
+      },
+      "response": []
+    },
+    {
+      "name": "Teams - Get all teams",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(800);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('teams');",
+              "    pm.expect(jsonData.data.teams).to.be.an(\"array\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query SeeTeams {\n  teams {\n    name,\n    tla,\n    shortName,\n    areaName,\n    email\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'teams' query: returns a list of teams."
+      },
+      "response": []
+    },
+    {
+      "name": "Team - Without players",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(800);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('team');",
+              "    pm.expect(jsonData.data.team).to.be.an(\"object\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query SeeTeams {\n  team(name: \"Arsenal FC\"){\n    name,\n    tla,\n    shortName,\n    areaName,\n    email\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'team' query: takes a name and returns the corresponding team. Additionally, if requested in the query, it should resolve the players for that team."
+      },
+      "response": []
+    },
+    {
+      "name": "Team - With players",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(800);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('team');",
+              "    pm.expect(jsonData.data.team).to.be.an(\"object\");",
+              "    pm.expect(jsonData.data.team).to.have.property('players');",
+              "    pm.expect(jsonData.data.team.players).to.be.an(\"array\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query SeeTeams {\n  team(name: \"Arsenal FC\"){\n    name,\n    tla,\n    shortName,\n    areaName,\n    email,\n    players {\n        name,\n        position,\n        dateOfBirth,\n        countryOfBirth,\n        nationality\n    }\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'team' query: takes a name and returns the corresponding team. Additionally, if requested in the query, it should resolve the players for that team."
+      },
+      "response": []
+    },
+    {
+      "name": "Players - Get all players by league",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(35000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(40000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('players');",
+              "    pm.expect(jsonData.data.players).to.be.an(\"array\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query SeePlayers {\n  players(leagueCode: \"PL\") {\n    name,\n    position,\n    dateOfBirth,\n    countryOfBirth,\n    nationality\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'players' query: takes leagueCode as a parameter and returns the players that belong to all teams\nparticipating in the given league. If the given leagueCode is not present in the DB, it should respond\nwith an error message.\nAlso has an optional input to the query to filter players also by team."
+      },
+      "response": []
+    },
+    {
+      "name": "Players - Non-existent league",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(800);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('errors');",
+              "    pm.expect(jsonData.errors).to.be.an(\"array\");",
+              "    pm.expect(jsonData.errors[0]).to.have.property('message');",
+              "    pm.expect(jsonData.errors[0].message).to.be.a(\"string\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query SeePlayers {\n  players(leagueCode: \"Non-existent league\") {\n    name,\n    position,\n    dateOfBirth,\n    countryOfBirth,\n    nationality\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'players' query: takes leagueCode as a parameter and returns the players that belong to all teams\nparticipating in the given league. If the given leagueCode is not present in the DB, it should respond\nwith an error message.\nAlso has an optional input to the query to filter players also by team."
+      },
+      "response": []
+    },
+    {
+      "name": "Players - Get all players by league & team",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Endpoint is online\", function () {",
+              "    pm.response.to.be.withBody;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Status code is OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Can connect to Endpoint\", function () {",
+              "    pm.response.to.not.have.status(404);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Endpoint don't give errors\", function () {",
+              "    pm.response.to.not.have.status(500);",
+              "    pm.response.to.not.have.status(501);",
+              "    pm.response.to.not.have.status(502);",
+              "    pm.response.to.not.have.status(503);",
+              "    pm.response.to.not.have.status(504);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(4000);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response time is very fast\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.withBody;",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response have correct properties\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('players');",
+              "    pm.expect(jsonData.data.players).to.be.an(\"array\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query SeePlayers {\n  players(leagueCode: \"PL\", teamName: \"Arsenal FC\") {\n    name,\n    position,\n    dateOfBirth,\n    countryOfBirth,\n    nationality\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        },
+        "description": "Test the 'players' query: takes leagueCode as a parameter and returns the players that belong to all teams\nparticipating in the given league. If the given leagueCode is not present in the DB, it should respond\nwith an error message.\nAlso has an optional input to the query to filter players also by team."
+      },
+      "response": []
+    }
+  ]
+}
